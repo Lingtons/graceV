@@ -1,0 +1,8 @@
+{
+  "name": "graceV",
+  "app_id": "31eb27ff",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
