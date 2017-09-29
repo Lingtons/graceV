@@ -8,11 +8,15 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BoosterPage } from '../pages/booster/booster';
 import { TeachingsPage } from '../pages/teachings/teachings';
-
+import { BoosterdetailPage } from '../pages/boosterdetail/boosterdetail';
+import { PostdetailPage } from '../pages/postdetail/postdetail';
+import { ViewlessonPage } from '../pages/viewlesson/viewlesson';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BoosterdataProvider } from '../providers/boosterdata/boosterdata';
 import { UserdataProvider } from '../providers/userdata/userdata';
+import { PostdataProvider } from '../providers/postdata/postdata';
+import { UserpostdataProvider } from '../providers/userpostdata/userpostdata';
 
 @NgModule({
   declarations: [
@@ -20,12 +24,17 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     HomePage,
     TabsPage,
     BoosterPage,
-    TeachingsPage
+    TeachingsPage,
+    BoosterdetailPage,
+    PostdetailPage,
+    ViewlessonPage
   ],
   imports: [
     HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+    mode: 'ios'
+    }),
     CacheModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -34,14 +43,19 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     HomePage,
     TabsPage,
     BoosterPage,
-    TeachingsPage
+    TeachingsPage,
+    BoosterdetailPage,
+    PostdetailPage,
+    ViewlessonPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BoosterdataProvider,
-    UserdataProvider
+    UserdataProvider,
+    PostdataProvider,
+    UserpostdataProvider
   ]
 })
 export class AppModule {}

@@ -64,14 +64,20 @@ $toolbar-ios-active-color:                 #fff;
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
+$toolbar-md-background:                   color($colors, whatsapp);
 
+// Change the color of the segment button text
+$toolbar-md-active-color:                 #fff;
 
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
+$toolbar-wp-background:                   color($colors, whatsapp);
 
+// Change the color of the segment button text
+$toolbar-wp-active-color:                 #fff;
 
 
 

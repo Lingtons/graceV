@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController, App, FabContainer, ItemSliding, List, ModalController, ToastController, LoadingController, Refresher } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, App, ItemSliding, List, ToastController, Refresher } from 'ionic-angular';
 import { BoosterdataProvider } from '../../providers/boosterdata/boosterdata';
+//attempt removing user data provider later run
 import { UserdataProvider } from '../../providers/userdata/userdata';
+import {BoosterdetailPage} from '../boosterdetail/boosterdetail';
 
 /**
  * Generated class for the BoosterPage page.
@@ -35,8 +37,6 @@ export class BoosterPage {
   	public boosterData: BoosterdataProvider,
   	public alertCtrl: AlertController,
 	public app: App,
-	public loadingCtrl: LoadingController,
-	public modalCtrl: ModalController,
 	public toastCtrl: ToastController,
 	public user: UserdataProvider,
 	
@@ -49,7 +49,7 @@ export class BoosterPage {
 
   updateBoosters() {
     // Close any open sliding items when the schedule updates
-    //this.boostersList && this.boostersList.closeSlidingItems();
+    this.boostersList && this.boostersList.closeSlidingItems();
 
 //    this.boosterData.getBoosters().subscribe((boosters: any[]) => {
   //    this.boosters = boosters;
@@ -119,6 +119,31 @@ export class BoosterPage {
     });
     // now present the alert on top of all other content
     alert.present();
+  }
+
+    goToBoosterDetail(booster: any) {
+    this.navCtrl.push(BoosterdetailPage, { boosterId: booster.id });
+  }
+
+    doRefresh(refresher: Refresher) {
+
+    
+    this.boosterData.getTimeline(this.queryText, this.segment).subscribe((data: any) => {
+      this.shownBoosters = data.shownBoosters;
+      this.boosters = data;
+
+      // simulate a network request that would take longer
+      // than just pulling from out local json file
+      setTimeout(() => {
+        refresher.complete();
+
+        const toast = this.toastCtrl.create({
+          message: 'Boosters have been updated.',
+          duration: 3000
+        });
+        toast.present();
+      }, 1000);
+    });
   }
 
 }

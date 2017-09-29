@@ -6,10 +6,6 @@
 -->
 <ion-header>
   <ion-navbar no-border-bottom>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-
     <ion-segment [(ngModel)]="segment" (ionChange)="updateBoosters()">
       <ion-segment-button value="all">
         All
@@ -36,21 +32,24 @@
 </ion-header>
 
 <ion-content padding>
+	  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
    <ion-list #boostersList [hidden]="shownBoosters === 0">
 
     <ion-item-group *ngFor="let booster of boosters" [hidden]="booster.hide">
 
       <ion-item-divider sticky>
-        <ion-label>
+        <ion-label >
           
-        	{{booster.created_at}}
+        	{{booster.created_at | date: 'fullDate' }}
         </ion-label>
       </ion-item-divider>
 
-      <ion-item-sliding *ngFor="let booster of boosters" #slidingItem [attr.color]="booster.color | lowercase" [hidden]="booster.hide">
+      <ion-item-sliding #slidingItem [attr.color]="booster.color | lowercase" [hidden]="booster.hide">
 
-        <button ion-item >
+        <button ion-item  (click)="goToBoosterDetail(booster)" >
           <h2>{{booster.title}}</h2>
           <p>
             Hello
