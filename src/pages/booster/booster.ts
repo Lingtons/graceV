@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController, App, ItemSliding, List, ToastController, Refresher } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, App, ItemSliding, List, ToastController, Refresher, Events } from 'ionic-angular';
 import { BoosterdataProvider } from '../../providers/boosterdata/boosterdata';
-//attempt removing user data provider later run
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import {BoosterdetailPage} from '../boosterdetail/boosterdetail';
 
@@ -30,6 +29,7 @@ export class BoosterPage {
   boosters : any[] = [];
   shownBoosters: any = [];
   segment = 'all';
+  
 
   constructor(
   	public navCtrl: NavController, 
@@ -39,34 +39,34 @@ export class BoosterPage {
 	public app: App,
 	public toastCtrl: ToastController,
 	public user: UserdataProvider,
+  public events: Events,
 	
     )
      { }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
 		this.updateBoosters();
+   
   }
 
   updateBoosters() {
     // Close any open sliding items when the schedule updates
-    this.boostersList && this.boostersList.closeSlidingItems();
+    //this.boostersList && this.boostersList.closeSlidingItems();
 
-//    this.boosterData.getBoosters().subscribe((boosters: any[]) => {
-  //    this.boosters = boosters;
-	//  console.log(this.boosters);
-    // });
 
     this.boosterData.getTimeline(this.queryText, this.segment).subscribe((data: any) => {
       this.shownBoosters = data.shownBoosters;
       this.boosters = data;
-      console.log(this.boosters);
+      
+      
+      
       
     });
   }
 
     addFavorite(slidingItem: ItemSliding, boosterData: any) {
 
-    if (this.user.hasFavorite(boosterData.name)) {
+    if (this.user.hasFavorite(boosterData.title)) {
       // woops, they already favorited it! What shall we do!?
       // prompt them to remove it
       this.removeFavorite(slidingItem, boosterData, 'Favorite already added');
@@ -144,6 +144,15 @@ export class BoosterPage {
         toast.present();
       }, 1000);
     });
+  }
+
+  PresentPopover(event: Event){
+  this.events.publish('popover:launch');
+  }
+
+  closeApp(){
+  this.events.publish('app:close');
+  
   }
 
 }

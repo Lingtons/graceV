@@ -5,7 +5,13 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar no-border-bottom>
+  <ion-navbar padding no-border-bottom>
+    <ion-buttons start >
+      <button ion-button icon-only >
+        <ion-icon name = "bookmarks-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    
     <ion-segment [(ngModel)]="segment" (ionChange)="updatePosts()">
       <ion-segment-button value="all">
         All
@@ -16,7 +22,7 @@
     </ion-segment>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="presentFilter()">
+      <button ion-button icon-only (click)="PresentPopover($event)">
         <ion-icon ios="md-more" md="md-more"></ion-icon>
       </button>
     </ion-buttons>
@@ -31,7 +37,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 	  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -51,10 +57,7 @@
 
         <button ion-item   (click)="goToPostDetail(post)" >
           <h2>{{post.title}}</h2>
-          <p>
-            Hello
-            
-          </p>
+          <p>Category : {{post.category.name}}</p>
         </button>
 
         <ion-item-options>

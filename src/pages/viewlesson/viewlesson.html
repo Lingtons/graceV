@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar padding no-border-bottom>
     <ion-title>{{lesson?.title}}</ion-title>
     <ion-buttons end>
 	<button ion-button icon-only (click) = "closeModal()" ><ion-icon name = "close"></ion-icon> </button>
@@ -16,6 +16,10 @@
 </ion-header>
 
 
-<ion-content padding>
-<p [innerHTML]="lesson?.body"></p>
+<ion-content>
+	<ion-item-divider sticky>
+<label>{{lesson?.title}}</label>
+</ion-item-divider>
+
+<p padding [innerHTML]="lesson?.body"></p>
 </ion-content>

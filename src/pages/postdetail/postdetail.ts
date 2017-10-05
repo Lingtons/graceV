@@ -36,9 +36,7 @@ lesson : any;
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PostdetailPage');
-  }
+  ionViewDidLoad() { }
 
   viewLesson(lesson){
 let modal = this.modalCtrl.create(ViewlessonPage, {lesson});

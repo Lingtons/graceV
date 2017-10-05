@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BoosterdataProvider } from '../../providers/boosterdata/boosterdata';
 
+
 /**
  * Generated class for the BoosterdetailPage page.
  *
@@ -15,9 +16,11 @@ import { BoosterdataProvider } from '../../providers/boosterdata/boosterdata';
   templateUrl: 'boosterdetail.html',
 })
 export class BoosterdetailPage {
+
 	booster : any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public boosterData: BoosterdataProvider,) {
   }
+
 
   ionViewWillEnter() {
     this.boosterData.load().subscribe((data: any) => {
@@ -34,7 +37,7 @@ export class BoosterdetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BoosterdetailPage');
+    
   }
 
 }

@@ -6,21 +6,29 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar padding no-border-bottom>
     <ion-title>{{post?.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-	<img [src] = " 'http://localhost:8000/images/' + post?.avatar " />
+<ion-content>
+  <br>
+  <ion-item-divider sticky>
+<label>{{post?.title}}</label>
+</ion-item-divider>
 
-<p [innerHTML]="post?.body"></p>
+<p padding  [innerHTML]="post?.body"></p>
 
-<ion-item *ngFor="let lesson of post?.lessons ">
+
+
+    <ion-list *ngFor="let lesson of post?.lessons ">
+      <ion-list-header>
+      Points
+  </ion-list-header>
+<button ion-item (click)="viewLesson(lesson)" >{{lesson.title}}  <ion-icon item-start name = "bookmark-outline"></ion-icon></button>
+	  
       
-      <p (click)="viewLesson(lesson)" >{{lesson.title}} </p>
-      
-    </ion-item>
+    </ion-list>
 </ion-content>

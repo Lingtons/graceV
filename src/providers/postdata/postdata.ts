@@ -27,10 +27,10 @@ data: any;
     if (this.data) {
       return Observable.of(this.data);
     } else {
-	let url = 'http://localhost:8000/api/v1/post/';
+	let url = 'http://sweekle.com/api/v1/post/';
 	let req = this.http.get(url);
 	let delayType = 'all';
-    let ttl = 10;
+    let ttl = 60*60*24*2;
 
 	
   return this.cache.loadFromDelayedObservable(url, req, this.postKey, ttl, delayType).map(res => res.json());
@@ -57,7 +57,7 @@ data: any;
           }
 
       });
-      console.log(day);
+
       return day;
     });
   }

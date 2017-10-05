@@ -13,7 +13,12 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class UserdataProvider {
 
-_favorites: string[] = [];
+
+ 
+
+_favorites : string[] = [];
+
+ 
 
   constructor(
     public events: Events,

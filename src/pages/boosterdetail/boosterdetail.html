@@ -6,27 +6,38 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar padding no-border-bottom>
     <ion-title>{{booster?.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-	<ion-item-divider sticky>
-        <ion-label>
-          
-        	Bible Verse
-        </ion-label>
-      </ion-item-divider>
-<p [innerHTML]="booster?.verse"></p>
-<ion-item-divider sticky>
-        <ion-label>
-          
-        	Confession
-        </ion-label>
+<ion-content padding> 
 
-      </ion-item-divider>
- <p [innerHTML]="booster?.confession"></p>
+ <flash-card>
+ 
+  
+
+    <div class="flash-card-front">
+      
+    <h1 class='f_headline'>Bible Verse</h1>
+    
+    <p class='f_title'  [innerHTML]='booster?.verse' ></p>
+      <p class='f_subline'>Tap to see confession <ion-icon name = "arrow-dropright-outline"></ion-icon>  </p>
+      
+  
+    </div>
+  
+ 
+    <div class="flash-card-back">
+  <h1 class='f_headline'>Confession</h1>
+    
+    <p class='f_title'  [innerHTML]='booster?.confession' ></p>
+      <p class='f_subline'><ion-icon name = "arrow-dropleft-outline"></ion-icon>  Tap to see bible verse  </p>
+    
+    </div>
+ 
+</flash-card>
+
 </ion-content>

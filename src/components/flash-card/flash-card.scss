@@ -1,0 +1,105 @@
+.ios, .md {
+ 
+    flash-card {
+ 
+        /*
+         *  Flip animation by David Walsh: https://davidwalsh.name/css-flip
+         */
+ 
+        /* entire container, keeps perspective */
+        .flip-container {
+            perspective: 1000px;
+        }
+ 
+            /* flip the pane when hovered */
+            .flip-container.flipped .flipper {
+                transform: rotateY(180deg);
+            }
+ 
+        .flip-container, .front, .back {
+            margin-top:10px;
+            
+        }
+ 
+        /* flip speed goes here */
+        .flipper {
+            transition: 0.6s;
+            transform-style: preserve-3d;
+ 
+            position: relative;
+        }
+ 
+        /* hide back of pane during swap */
+        .front, .back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ecf0f1;
+            backface-visibility: hidden;
+            -webkit-box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+            -moz-box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+            box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+            border: 1px solid #dee2e3;
+            padding:10px;
+
+            position: absolute;
+            width:100%;
+
+
+            .f_title {
+                padding-top: 15px;
+            }
+
+            .f_subline {
+              font-size:16px;
+              color: #B1D4E8;
+            }
+
+            .f_headline {
+            padding-top: 10px;
+              line-height: 20px;
+            }
+
+            h1 {
+              font-size: 2.0em;
+            }
+
+            p {
+              font-size: 1.5em;
+              line-height: 25px;
+            }
+
+
+        }
+ 
+        /* front pane, placed above back */
+        .front {
+        background-color: #fafafa;
+        background-image: url('../assets/img/flash_bg.png');
+        background-repeat:no-repeat;
+        background-position:center;
+        
+        letter-spacing: 0.02em;
+        font-weight: 600;
+            z-index: 2;
+            /* for firefox 31 */
+            transform: rotateY(0deg);
+
+            
+        }
+ 
+        /* back, initially hidden pane */
+        .back {
+            background-color: #fafafa;
+            background-image: url('../assets/img/flash_bg.png');
+            background-repeat:no-repeat;
+            background-position:center;
+        
+            letter-spacing: 0.02em;
+            font-weight: 600;
+            transform: rotateY(180deg);
+        }
+ 
+    }
+ 
+}

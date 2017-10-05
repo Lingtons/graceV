@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController, App, ItemSliding, List, ToastController, Refresher } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, App, ItemSliding, List, ToastController, Refresher, Events } from 'ionic-angular';
 import { PostdataProvider } from '../../providers/postdata/postdata';
 import { UserpostdataProvider } from '../../providers/userpostdata/userpostdata';
 import {PostdetailPage} from '../postdetail/postdetail';
@@ -38,6 +38,7 @@ export class TeachingsPage {
 	public app: App,
 	public toastCtrl: ToastController,
 	public user: UserpostdataProvider,
+  public events: Events,
 	
     )
      { }
@@ -52,9 +53,7 @@ export class TeachingsPage {
 
     this.postData.getTimeline(this.queryText, this.segment).subscribe((data: any) => {
       this.shownPosts = data.shownPosts;
-      this.posts = data;
-      console.log(this.posts);
-      
+      this.posts = data;      
     });
   }
 
@@ -139,5 +138,15 @@ export class TeachingsPage {
       }, 1000);
     });
   }
+
+  PresentPopover(event: Event){
+  this.events.publish('popover:launch');
+  }
+
+  closeApp(){
+  this.events.publish('app:close');
+  
+  }
+
 
 }

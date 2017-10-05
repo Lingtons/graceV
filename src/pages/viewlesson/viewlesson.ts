@@ -21,7 +21,7 @@ lesson : any;
 
   ionViewDidLoad() {
     this.lesson  = this.navParams.get('lesson');
-	console.log('LGA', this.navParams.get('lesson'));
+
   }
 
   closeModal(){

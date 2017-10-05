@@ -1,16 +1,16 @@
 $categories: (
  ionic: color($colors, primary),
- angular: #AC282B,
- communication: #8E8D93,
- tooling: #FE4C52,
- services: #FD8B2D,
- design: #FED035,
- workshop: #69BB7B,
- green: #3BC7C4,
+ caution: #d50000,
+ favour: #9ccc65,
+ health: #ff6e40,
+ peace: #81c784,
+ protection: #b0bec5,
+ success: #ff80ab,
+ wealth: #2196f3,
  documentation: #B16BE3,
  navigation: #6600CC,
 );
-
+                          
 @function auxiliary-categories() {
   @return map-remove($categories);
 }

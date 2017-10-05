@@ -48,6 +48,7 @@ ion-icon::before {
 .tabs-ios .tab-button[aria-selected="true"] {
     color: color($colors, whatsapp);
     padding: 0px;
+
 }
 
 // selected tab color on windows 
@@ -56,5 +57,8 @@ ion-icon::before {
     border-bottom-color: color($colors, whatsapp);
     padding: 0px;
 }
-	
+
+
 }
+
+

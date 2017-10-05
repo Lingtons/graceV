@@ -5,7 +5,12 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar no-border-bottom>
+  <ion-navbar padding no-border-bottom>
+    <ion-buttons start >
+      <button ion-button icon-only >
+        <ion-icon name = "bulb-outline"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-segment [(ngModel)]="segment" (ionChange)="updateBoosters()">
       <ion-segment-button value="all">
         All
@@ -13,10 +18,11 @@
       <ion-segment-button value="favorites">
         Favorites
       </ion-segment-button>
+
     </ion-segment>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="presentFilter()">
+      <button ion-button icon-only (click)="PresentPopover($event)">
         <ion-icon ios="md-more" md="md-more"></ion-icon>
       </button>
     </ion-buttons>
@@ -31,7 +37,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 	  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -49,12 +55,9 @@
 
       <ion-item-sliding #slidingItem [attr.color]="booster.color | lowercase" [hidden]="booster.hide">
 
-        <button ion-item  (click)="goToBoosterDetail(booster)" >
+        <button ion-item  align-right (click)="goToBoosterDetail(booster)" >
           <h2>{{booster.title}}</h2>
-          <p>
-            Hello
-            
-          </p>
+          <p>Category : {{booster.color}}</p>
         </button>
 
         <ion-item-options>
@@ -75,4 +78,5 @@
   <ion-list-header [hidden]="shownBoosters > 0">
       No Boosters Found
   </ion-list-header>
+
 </ion-content>
