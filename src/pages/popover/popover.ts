@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, NavController, ModalController, ViewController } from 'ionic-angular';
+import { App, NavController, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the PopoverPage page.
@@ -27,7 +27,7 @@ export class PopoverPage {
   	public viewCtrl: ViewController,
     public navCtrl: NavController,
     public app: App,
-    public modalCtrl: ModalController
+
 ) {
   }
 

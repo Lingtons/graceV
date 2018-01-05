@@ -47,22 +47,40 @@
 
 
             .f_title {
-                padding-top: 15px;
+                padding-top: 5px;
+                position:relative;
+                font-family: 'Open Sans', sans-serif !important;
+                font-weight: 200 !important;
+                font-style:italic;
+              
+                text-align: center;
+
             }
 
             .f_subline {
               font-size:16px;
               color: #B1D4E8;
+
+              position: fixed; 
+              bottom:0px;
             }
 
-            .f_headline {
-            padding-top: 10px;
-              line-height: 20px;
-            }
+              .f_headline{
+              position:fixed;
+              top:5px;
+              padding:5px;
+              color:#fff;
+              text-align:center;
+              width:94%;
+              border-radius:5px 30px 30px 5px;
+              background-color:#bbdefb;
+              font-family: 'Open Sans', sans-serif !important;
+              font-weight: 600 !important;
+              }
 
             h1 {
               font-size: 2.0em;
-            }
+              }
 
             p {
               font-size: 1.5em;
@@ -78,6 +96,8 @@
         background-image: url('../assets/img/flash_bg.png');
         background-repeat:no-repeat;
         background-position:center;
+        min-height:300px;
+        border-radius:7px;
         
         letter-spacing: 0.02em;
         font-weight: 600;
@@ -94,6 +114,8 @@
             background-image: url('../assets/img/flash_bg.png');
             background-repeat:no-repeat;
             background-position:center;
+            min-height:300px;
+            border-radius:7px;
         
             letter-spacing: 0.02em;
             font-weight: 600;

@@ -23,11 +23,13 @@
 
 
 
-    <ion-list *ngFor="let lesson of post?.lessons ">
+
+    <ion-list >
       <ion-list-header>
-      Points
+    Points
   </ion-list-header>
-<button ion-item (click)="viewLesson(lesson)" >{{lesson.title}}  <ion-icon item-start name = "bookmark-outline"></ion-icon></button>
+	
+	<ion-item *ngFor="let lesson of post?.lessons " (click)="viewLesson(lesson)" >{{lesson.title}}  <ion-icon item-start name = "bookmark-outline"></ion-icon></ion-item>
 	  
       
     </ion-list>
