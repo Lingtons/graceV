@@ -5,21 +5,22 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar padding no-border-bottom>
+  <ion-navbar>
     <ion-buttons start >
-      <button ion-button icon-only >
-        <ion-icon name = "bookmarks-outline"></ion-icon>
-      </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     </ion-buttons>
     
-    <ion-segment [(ngModel)]="segment" (ionChange)="updatePosts()">
+    <!-- <ion-segment [(ngModel)]="segment" (ionChange)="updatePosts()">
       <ion-segment-button value="all">
         All
       </ion-segment-button>
       <ion-segment-button value="favorites">
         Favorites
       </ion-segment-button>
-    </ion-segment>
+    </ion-segment> -->
+    <ion-title>Sermons</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only (click)="PresentPopover($event)">
