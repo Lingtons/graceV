@@ -27,7 +27,7 @@ data: any;
     if (this.data) {
       return Observable.of(this.data);
     } else {
-	let url = 'http://sweekle.com/api/v1/post/';
+	let url = 'http://gracev.gwucorp.com/api/v1/post/';
 	let req = this.http.get(url);
 	let delayType = 'all';
     let ttl = 60*60*24*2;

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, List } from 'ionic-angular';
+import { EventsDataProvider } from '../../providers/events-data/events-data';
+import { EventdetailPage } from '../eventdetail/eventdetail';
 /**
  * Generated class for the EventsPage page.
  *
@@ -14,12 +15,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'events.html',
 })
 export class EventsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  @ViewChild('eventList', { read: List }) scheduleList: List;
+  events: any = [];
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public eventData: EventsDataProvider,) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventsPage');
+    this.eventData.getEvents().subscribe((data: any []) => {
+      this.events = data;
+    });
+    
   }
+
+ seeEvent(event) {
+    this.navCtrl.push(EventdetailPage, {event});
+  } 
 
 }

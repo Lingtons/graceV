@@ -12,11 +12,12 @@ import { TeachingsPage } from '../pages/teachings/teachings';
 import { BoosterdetailPage } from '../pages/boosterdetail/boosterdetail';
 import { PostdetailPage } from '../pages/postdetail/postdetail';
 import { ViewlessonPage } from '../pages/viewlesson/viewlesson';
+import { ViewnotificationPage } from '../pages/viewnotification/viewnotification';
 import { PopoverPage } from '../pages/popover/popover';
 import { AudioPage } from '../pages/audio/audio';
 import { BroadcastPage } from '../pages/broadcast/broadcast';
-import { CalendarPage } from '../pages/calendar/calendar';
 import { EventsPage } from '../pages/events/events';
+import { EventdetailPage } from '../pages/eventdetail/eventdetail';
 import { MapPage } from '../pages/map/map';
 import { NotificationPage } from '../pages/notification/notification';
 import { VideoPage } from '../pages/video/video';
@@ -29,7 +30,10 @@ import { UserpostdataProvider } from '../providers/userpostdata/userpostdata';
 import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { Push } from '@ionic-native/push';
 import { SideMenuContentComponent } from '../components/side-menu-content/side-menu-content.component';
-
+import { EventsDataProvider } from '../providers/events-data/events-data';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { RestdataProvider } from '../providers/restdata/restdata';
+import { ViewresourcePage } from '../pages/viewresource/viewresource';
 
 
 @NgModule({
@@ -44,19 +48,21 @@ import { SideMenuContentComponent } from '../components/side-menu-content/side-m
     PopoverPage,
     AudioPage,
     BroadcastPage,
-    CalendarPage,
     EventsPage,
     MapPage,
     NotificationPage,
     VideoPage,
     FlashCardComponent,
     SideMenuContentComponent,
-
+    EventdetailPage,
+    ViewnotificationPage,
+    ViewresourcePage
   ],
   imports: [
     HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp,{
+    backButtonText: '',
     mode: 'ios'
     }, {
 
@@ -65,6 +71,7 @@ import { SideMenuContentComponent } from '../components/side-menu-content/side-m
         { component: TeachingsPage, name: 'TeachingsPage', segment: 'TeachingsPage' },
         { component: BoosterPage, name: 'BoosterPage', segment: 'TeachingsPage' },
         { component: BoosterdetailPage, name: 'Boosterdetail', segment: 'Boosterdetail/:boosterId' },
+        { component: EventsPage, name: 'EventsPage' },
         
       ]
     }),
@@ -82,12 +89,14 @@ import { SideMenuContentComponent } from '../components/side-menu-content/side-m
     PopoverPage,
     AudioPage,
     BroadcastPage,
-    CalendarPage,
     EventsPage,
     MapPage,
     NotificationPage,
     VideoPage,
     FlashCardComponent,
+    EventdetailPage,
+    ViewnotificationPage,
+    ViewresourcePage
     
   ],
   providers: [
@@ -96,11 +105,14 @@ import { SideMenuContentComponent } from '../components/side-menu-content/side-m
     Geolocation,
     AppMinimize,
     Push,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BoosterdataProvider,
     UserdataProvider,
     PostdataProvider,
-    UserpostdataProvider
+    UserpostdataProvider,
+    EventsDataProvider,
+    RestdataProvider,
   ],
 })
 export class AppModule {}

@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar padding no-border-bottom>
     <ion-buttons start>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -18,10 +18,27 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-list #eventList >                          
+    <ion-card *ngFor="let event of events"  (click)="seeEvent(event)">
+          <img src="http://gracev.gwucorp.com/images/{{event.avatar}}" />
+          <ion-card-content >
+              <ion-card-title  >                              
+                  {{event.title}}                          
+              </ion-card-title>                      
+              <p>                        
+                  {{event.category.name}} &mdash;                          
+                  {{event.created_at | date: 'fullDate' }}
+                  <button ion-button clear icon-only small color="danger" icon-start>
+                    <ion-icon name='share-alt' ></ion-icon>                                                        
+                  </button>
+                </p>
+        </ion-card-content>                                                                                        
+    </ion-card>
+    
 
+  </ion-list>
 </ion-content>

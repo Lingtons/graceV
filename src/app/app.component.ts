@@ -11,7 +11,6 @@ import { BoosterPage } from '../pages/booster/booster';
 import { TeachingsPage } from '../pages/teachings/teachings';
 import { AudioPage } from '../pages/audio/audio';
 import { BroadcastPage } from '../pages/broadcast/broadcast';
-import { CalendarPage } from '../pages/calendar/calendar';
 import { EventsPage } from '../pages/events/events';
 import { MapPage } from '../pages/map/map';
 import { NotificationPage } from '../pages/notification/notification';
@@ -95,7 +94,16 @@ export class MyApp {
     });
 
    this.platform.registerBackButtonAction(() => {
-   this.appMinimize.minimize();
+				if(this.menuCtrl.isOpen()){
+					this.menuCtrl.close();
+			} 
+			else if(this.nav.canGoBack()){
+				this.nav.pop();
+			}else{
+				this.appMinimize.minimize();
+			}
+
+
   });
   
   		// Change the value for the batch every 5 seconds
@@ -121,44 +129,27 @@ export class MyApp {
 
     this.options.push({
 			iconName: 'bulb',
-			displayName: 'Booster',
+			displayName: 'Boosters',
 			component: BoosterPage
 		});
 
     
     		// Load options with nested items (with icons)
 		// -----------------------------------------------
+
 		this.options.push({
+			iconName: 'book',
 			displayName: 'Services / Sermons',
-			subItems: [
-				{
-					iconName: 'book',
-					displayName: 'Sundays',
-					component: TeachingsPage
-				},
-				{
-					iconName: 'bookmark',
-					displayName: 'Mid-Week',
-					component: TeachingsPage
-				},
-			]
+			component: TeachingsPage
+
 		});
 
-    this.options.push({
-			displayName: 'Church Events',
-			subItems: [
-				{
-					iconName: 'calendar',
-					displayName: 'Upcoming',
-					component: EventsPage
-				},
-				{
-					iconName: 'md-calendar',
-					displayName: 'Calendar',
-					component: CalendarPage
-				},
-			]
-    });
+		this.options.push({
+			iconName: 'calendar',
+			displayName: 'Upcoming Events',
+			component: EventsPage
+
+		});
 
     this.options.push({
 			displayName: 'Podcasts',
@@ -184,8 +175,8 @@ export class MyApp {
     });
 
     this.options.push({
-			iconName: 'md-megaphone',
-			displayName: 'Broadcasts',
+			iconName: 'folder',
+			displayName: 'Resources',
 			badge: ArrayObservable.of('NEW'),
 			component: BroadcastPage
     });

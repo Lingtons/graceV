@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { UserdataProvider } from '../userdata/userdata';
 import 'rxjs/add/operator/map';
-
-
 import { CacheService } from 'ionic-cache';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -29,11 +27,10 @@ data: any;
     if (this.data) {
       return Observable.of(this.data);
     } else {
-	let url = 'http://sweekle.com/api/v1/booster/';
+	let url = 'http://gracev.gwucorp.com/api/v1/booster/';
 	let req = this.http.get(url);
 	let delayType = 'all';
-    let ttl = 60*60*24*2;
-
+  let ttl = 60*60*24*2;
 	
   return this.cache.loadFromDelayedObservable(url, req, this.boosterKey, ttl, delayType).map(res => res.json());
 	

@@ -114,7 +114,7 @@ export class TeachingsPage {
     alert.present();
   }
 
-    goToPostDetail(post: any) {
+  goToPostDetail(post: any) {
    this.navCtrl.push(PostdetailPage, { postId: post.id });
   }
 
@@ -147,6 +147,4 @@ export class TeachingsPage {
   this.events.publish('app:close');
   
   }
-
-
 }

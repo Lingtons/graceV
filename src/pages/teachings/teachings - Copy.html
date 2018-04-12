@@ -42,26 +42,41 @@
 	  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-    <ion-list #postList [hidden]="shownPosts === 0" >                          
-            <ion-card *ngFor="let post of posts" [hidden]="post.hide"  (click)="goToPostDetail(post)">
-                  <img src="http://gracev.gwucorp.com/images/{{post.avatar}}" />
-                  <ion-card-content >
-                      <ion-card-title  >                              
-                          {{post.title}}                          
-                      </ion-card-title>                      
-                      <p>                        
-                          {{post.category.name}} &mdash;                          
-                          {{post.created_at | date: 'fullDate' }}
-                          <button ion-button clear icon-only small color="danger" icon-start>
-                            <ion-icon name='share-alt' ></ion-icon>                                                        
-                          </button>
-                        </p>
-                </ion-card-content>                                                                                        
-            </ion-card>
-            
-        
-          </ion-list>
-<ion-list-header [hidden]="shownPosts > 0">
+
+   <ion-list #postList [hidden]="shownPosts === 0">
+
+    <ion-item-group *ngFor="let post of posts" [hidden]="post.hide">
+
+      <ion-item-divider sticky>
+        <ion-label>
+          
+        	{{post.created_at | date: 'fullDate' }}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item-sliding #slidingItem [attr.color]="post.color | lowercase" [hidden]="post.hide">
+
+        <button ion-item   (click)="goToPostDetail(post)" >
+          <h2>{{post.title}}</h2>
+          <p>Category : {{post.category.name}}</p>
+        </button>
+
+        <ion-item-options>
+          <button ion-button color="favorite" (click)="addFavorite(slidingItem, post)" *ngIf="segment === 'all'">
+            Favorite
+          </button>
+          <button ion-button color="danger" (click)="removeFavorite(slidingItem, post, 'Remove Favorite')" *ngIf="segment === 'favorites'">
+            Remove
+          </button>
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+    </ion-item-group>
+
+  </ion-list>
+  
+  <ion-list-header [hidden]="shownPosts > 0">
       No Teachings Found
   </ion-list-header>
 </ion-content>

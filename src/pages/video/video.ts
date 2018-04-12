@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
+import { RestdataProvider } from '../../providers/restdata/restdata';
 
 /**
  * Generated class for the VideoPage page.
@@ -14,12 +16,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'video.html',
 })
 export class VideoPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  videos: any = [];
+  url: string;  
+  constructor(public navCtrl: NavController, public navParams: NavParams, private inAppBrowser: InAppBrowser, public restData: RestdataProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad VideoPage');
+    this.restData.getVideos().subscribe((data: any []) => {
+      this.videos = data;      
+    });
   }
+
+  videoLink(url: string) {
+    const options: InAppBrowserOptions = {
+      zoom: 'no',
+      location: 'yes',
+      mediaPlaybackRequiresUserAction: 'no'
+    }
+// Opening a URL and returning an InAppBrowserObject
+const browser = this.inAppBrowser.create(url, '_self', options);
+  
+}
 
 }
