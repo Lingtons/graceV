@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "823998468148",
+    "firebase_url": "https://gracev-12c57.firebaseio.com",
+    "project_id": "gracev-12c57",
+    "storage_bucket": "gracev-12c57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823998468148:android:d91cd010b02cd918",
+        "android_client_info": {
+          "package_name": "com.gracevillecc.gracev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823998468148-jfnri9mhpoecp8d8idlhdfonh750um9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBf7nHLC275XylpKFD5SmRONBcqNJFQm7I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

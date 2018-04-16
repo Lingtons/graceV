@@ -3,8 +3,9 @@ import { ErrorHandler, NgModule  } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { CacheModule } from 'ionic-cache';
 import { AppMinimize } from '@ionic-native/app-minimize';
+import { Firebase } from '@ionic-native/firebase';
+import { LaunchNavigator} from '@ionic-native/launch-navigator';
 import { HttpModule } from '@angular/http';
-import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { BoosterPage } from '../pages/booster/booster';
@@ -34,7 +35,6 @@ import { EventsDataProvider } from '../providers/events-data/events-data';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { RestdataProvider } from '../providers/restdata/restdata';
 import { ViewresourcePage } from '../pages/viewresource/viewresource';
-
 
 @NgModule({
   declarations: [
@@ -102,10 +102,11 @@ import { ViewresourcePage } from '../pages/viewresource/viewresource';
   providers: [
     StatusBar,
     SplashScreen,
-    Geolocation,
     AppMinimize,
     Push,
+    Firebase,
     InAppBrowser,
+    LaunchNavigator,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BoosterdataProvider,
     UserdataProvider,

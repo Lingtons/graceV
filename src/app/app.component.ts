@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { CacheService } from 'ionic-cache';
 import { AppMinimize } from '@ionic-native/app-minimize';
+import { Firebase } from '@ionic-native/firebase';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PopoverPage } from '../pages/popover/popover';
 import { BoosterPage } from '../pages/booster/booster';
@@ -63,7 +64,7 @@ export class MyApp {
   
     private unreadCountObservable: any = new ReplaySubject<number>(0);
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events, public popoverCtrl: PopoverController, public push: Push, public alertCtrl: AlertController, cache: CacheService, private appMinimize: AppMinimize, private menuCtrl: MenuController) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public events: Events, public popoverCtrl: PopoverController, public push: Push, public alertCtrl: AlertController, cache: CacheService, private appMinimize: AppMinimize, private menuCtrl: MenuController, private firebase : Firebase) {
     this.initializeApp();
 
     cache.setDefaultTTL(60 * 60 * 24 * 2);
@@ -82,11 +83,32 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+			this.firebase.getToken()
+  		.then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
+  		.catch(error => console.error('Error getting token', error));
+
+			this.firebase.onTokenRefresh()
+			.subscribe((token: string) => console.log(`Got a new token ${token}`));
+			
+			this.firebase.onNotificationOpen().subscribe((res) => {
+				if (res.tap) {
+						// since firebase sends always string as data you have to parse it
+						//let data = JSON.parse(res.data)
+						/*if(data.type === 'page1') {
+						this.nav.push(NotificationPage);
+						}*/
+						// this else if is for foreground mode
+						} else if (!res.tap) {
+						this.nav.push(NotificationPage)
+						}
+		}
+			      
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.pushsetup();
+      //this.pushsetup();
 
       // Initialize some options
       this.initializeOptions();
