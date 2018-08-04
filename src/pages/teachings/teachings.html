@@ -11,7 +11,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     </ion-buttons>
-    
+
     <!-- <ion-segment [(ngModel)]="segment" (ionChange)="updatePosts()">
       <ion-segment-button value="all">
         All
@@ -38,29 +38,42 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content no-padding margin-top >
 	  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-    <ion-list #postList [hidden]="shownPosts === 0" >                          
+   <!--  <ion-list #postList [hidden]="shownPosts === 0" >
             <ion-card *ngFor="let post of posts" [hidden]="post.hide"  (click)="goToPostDetail(post)">
                   <img src="http://gracev.gwucorp.com/images/{{post.avatar}}" />
                   <ion-card-content >
-                      <ion-card-title  >                              
-                          {{post.title}}                          
-                      </ion-card-title>                      
-                      <p>                        
-                          {{post.category.name}} &mdash;                          
+                      <ion-card-title  >
+                          {{post.title}}
+                      </ion-card-title>
+                      <p>
+                          {{post.category.name}} &mdash;
                           {{post.created_at | date: 'fullDate' }}
                           <button ion-button clear icon-only small color="danger" icon-start>
-                            <ion-icon name='share-alt' ></ion-icon>                                                        
+                            <ion-icon name='share-alt' ></ion-icon>
                           </button>
                         </p>
-                </ion-card-content>                                                                                        
+                </ion-card-content>
             </ion-card>
-            
-        
           </ion-list>
+ -->
+          <ion-grid no-padding>
+              <ion-row  [hidden]="shownPosts === 0">
+                <ion-col col-12 col-md-6 col-lg-6 col-xl-6 *ngFor="let post of posts" [hidden]="post.hide"  (click)="goToPostDetail(post)">
+                  <ion-card>
+                      <img src="http://gracev.gwucorp.com/images/{{post.avatar}}" />
+                    <ion-card-header>{{ post.title }}</ion-card-header>
+                    <ion-card-content>
+                        {{post.created_at | date: 'fullDate' }}
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
 <ion-list-header [hidden]="shownPosts > 0">
       No Teachings Found
   </ion-list-header>

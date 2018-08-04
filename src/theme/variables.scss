@@ -50,12 +50,15 @@ $colors: (
 
 );
 
-
+$content-margin:	12px;
+$list-ios-margin-top :	5px;
+$menu-width: 267px;
+$menu-small-width: 240px;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-$toolbar-ios-background:                   color($colors, whatsapp);
+//$toolbar-ios-background:                   color($colors, whatsapp);
 
 // Change the color of the segment button text
 $toolbar-ios-active-color:                 #fff;
@@ -102,11 +105,11 @@ $toolbar-wp-active-color:                 #fff;
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
+/* @import "roboto";
 @import "noto-sans";
+ */
 
-
-@font-face {
+/* @font-face {
   font-family: 'Open Sans';
   font-style: light;
   font-weight: 200;
@@ -139,4 +142,43 @@ $toolbar-wp-active-color:                 #fff;
   font-style: extra-bold;
   font-weight: 900;
   src: url('../assets/fonts/OpenSans-ExtraBold.ttf');
+} */
+
+
+@font-face {
+  font-family: 'Raleway', sans-serif;
+  font-style: light;
+  font-weight: 200;
+  src: url('../assets/fonts/Raleway-Light.ttf');
 }
+
+@font-face {
+  font-family: 'Raleway', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/Raleway-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Raleway', sans-serif;
+  font-style: semi-bold;
+  font-weight: 600;
+  src: url('../assets/fonts/Raleway-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Raleway', sans-serif;
+  font-style: bold;
+  font-weight: 700;
+  src: url('../assets/fonts/Raleway-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Raleway', sans-serif;
+  font-style: light;
+  font-weight: 900;
+  src: url('../assets/fonts/Raleway-ExtraBold.ttf');
+}
+
+
+

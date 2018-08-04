@@ -13,32 +13,44 @@
 </ion-header>
 
 
-<ion-content padding> 
+<ion-content no-padding margin-top>
 
  <flash-card>
- 
-  
 
-    <div class="flash-card-front">
-      
+  <div class="flash-card-front">
+
     <span class='f_headline'>Bible Verse</span>
-    
-    <p class='f_title'  [innerHTML]='booster?.verse' ></p>
 
-      <p class='f_subline'>Tap to see confession <ion-icon name = "arrow-dropright-outline"></ion-icon>  </p>
-      
-  
+    <p class='f_title'  [innerHTML]='booster?.verse' ></p>
     </div>
-  
- 
+
     <div class="flash-card-back">
-  <span class='f_headline'>Confession</span>
-    
-    <p class='f_title'  [innerHTML]='booster?.confession' ></p>
-      <p class='f_subline'><ion-icon name = "arrow-dropleft-outline"></ion-icon>  Tap to see bible verse  </p>
-    
+
+    <p class='f_title'  [innerHTML]='booster?.confession' > </p>
     </div>
- 
+
 </flash-card>
 
-</ion-content>
+</ion-content><ion-footer>
+  <ion-toolbar>
+    <ion-grid>      
+
+<ion-row>
+<ion-col text-center>
+      <button ion-button (click) = "shareTwitter()" icon-only clear  color="twitter">
+        <ion-icon name="logo-twitter"></ion-icon>
+        <button ion-button (click) = "shareFacebook()" icon-only clear  color="facebook" >
+          <ion-icon name="logo-facebook"></ion-icon></button>
+    </button>
+    <button ion-button (click) = "shareInstagram()" icon-only clear  color="instagram">
+      <ion-icon name="logo-instagram"></ion-icon>
+    </button>
+    <button ion-button (click) = "shareWhatsapp()" icon-only clear color="whatsapp" >
+      <ion-icon name="logo-whatsapp"></ion-icon>
+    </button>
+</ion-col>
+</ion-row>
+</ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Events } from 'ionic-angular';
 import { ViewlessonPage } from '../viewlesson/viewlesson';
 /**
  * Generated class for the ViewresourcePage page.
@@ -16,8 +16,8 @@ import { ViewlessonPage } from '../viewlesson/viewlesson';
 export class ViewresourcePage {
   resource : any;
   lesson : any;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl : ModalController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl : ModalController, public ev: Events) {
   }
 
   ionViewDidLoad() {
@@ -27,7 +27,16 @@ export class ViewresourcePage {
   viewGem(lesson){
     let modal = this.modalCtrl.create(ViewlessonPage, {lesson});
     modal.present();
-      
+
   }
+
+  PresentPopover(event: Event){
+    this.ev.publish('popover:launch');
+    }
+
+  closeApp(){
+    this.ev.publish('app:close');
+    }
+
 
 }

@@ -9,21 +9,32 @@
       <ion-title>{{event?.title}}</ion-title>
     </ion-navbar>
   </ion-header>
-  
-  <ion-content  class="event-detail">
-    <div text-center *ngIf="event">      
-      <img src="http://gracev.gwucorp.com/images/{{event?.avatar}}" no-padding />
-      <button ion-button icon-only clear small color="twitter">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </button>
-      <button ion-button icon-only clear small color="github">
-        <ion-icon name="logo-github"></ion-icon>
-      </button>
-      <button ion-button icon-only clear small color="instagram">
-        <ion-icon name="logo-instagram"></ion-icon>
-      </button>
-    </div>
-  
+
+  <ion-content no-padding margin-top>
+      <ion-grid>
+                  <img class = "cover-img" src="http://gracev.gwucorp.com/images/{{event?.avatar}}" />
+        </ion-grid>
+
     <p padding  [innerHTML]="event?.body"></p>
   </ion-content>
-  
+  <ion-footer>
+    <ion-toolbar>
+      <ion-grid>      
+  <ion-row>
+  <ion-col text-center>
+        <button ion-button (click) = "shareTwitter()" icon-only clear  color="twitter">
+          <ion-icon name="logo-twitter"></ion-icon>
+          <button ion-button (click) = "shareFacebook()" icon-only clear  color="facebook" >
+            <ion-icon name="logo-facebook"></ion-icon></button>
+      </button>
+      <button ion-button (click) = "shareInstagram()" icon-only clear  color="instagram">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </button>
+      <button ion-button (click) = "shareWhatsapp()" icon-only clear color="whatsapp" >
+        <ion-icon name="logo-whatsapp"></ion-icon>
+      </button>
+  </ion-col>
+  </ion-row>
+  </ion-grid>
+    </ion-toolbar>
+  </ion-footer>

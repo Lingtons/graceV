@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { BoosterdataProvider } from '../../providers/boosterdata/boosterdata';
-
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 /**
  * Generated class for the BoosterdetailPage page.
@@ -17,8 +17,10 @@ import { BoosterdataProvider } from '../../providers/boosterdata/boosterdata';
 })
 export class BoosterdetailPage {
 
-	booster : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public boosterData: BoosterdataProvider,) {
+  booster : any;
+  sitelink: string = 'http://gracev.gwucorp.com/images/';
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public boosterData: BoosterdataProvider, public ev : Events, private socialSharing: SocialSharing) {
   }
 
 
@@ -36,8 +38,58 @@ export class BoosterdetailPage {
 
   }
 
+
+
   ionViewDidLoad() {
-    
+
   }
+
+  PresentPopover(event: Event){
+    this.ev.publish('popover:launch');
+    }
+
+  closeApp(){
+    this.ev.publish('app:close');
+    }
+    
+    shareTwitter(){
+      this.socialSharing.shareViaTwitter(this.booster.verse, this.sitelink+'verse.jpg', null )
+      .then(()=> {
+        console.log("success");
+      }).catch(()=>{
+        console.log("error");
+      })
+    }
+
+
+    shareFacebook(){
+      this.socialSharing.shareViaFacebook(this.booster.verse, this.sitelink+'verse.jpg', null )
+      .then(()=> {
+        console.log("success");
+      }).catch(()=>{
+        console.log("error");
+      })
+    }
+
+
+    shareInstagram(){
+      this.socialSharing.shareViaInstagram(this.booster.verse, this.sitelink+'verse.jpg')
+      .then(()=> {
+        console.log("success");
+      }).catch(()=>{
+        console.log("error");
+      })
+    }
+
+
+    shareWhatsapp(){
+      this.socialSharing.shareViaWhatsApp(this.booster.verse, this.sitelink+'verse.jpg', null )
+      .then(()=> {
+        console.log("success");
+      }).catch(()=>{
+        console.log("error");
+      })
+    }
+
 
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {IonicPage, NavController, NavParams, AlertController, App, ItemSliding, List, ToastController, Refresher, Events } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, App, ItemSliding, List, ToastController, Refresher, Events} from 'ionic-angular';
 import { BoosterdataProvider } from '../../providers/boosterdata/boosterdata';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import {BoosterdetailPage} from '../boosterdetail/boosterdetail';
@@ -23,30 +23,31 @@ export class BoosterPage {
   // with the variable #scheduleList, `read: List` tells it to return
   // the List and not a reference to the element
   @ViewChild('boostersList', { read: List }) boostersList: List;
-  
+
 
   queryText = '';
   boosters : any[] = [];
   shownBoosters: any = [];
   segment = 'all';
-  
+
 
   constructor(
-  	public navCtrl: NavController, 
-  	public navParams: NavParams, 
+  	public navCtrl: NavController,
+  	public navParams: NavParams,
   	public boosterData: BoosterdataProvider,
   	public alertCtrl: AlertController,
 	public app: App,
 	public toastCtrl: ToastController,
-	public user: UserdataProvider,
-  public events: Events,
-	
+  public user: UserdataProvider,
+  public ev : Events
+
+
     )
      { }
 
   ionViewDidEnter() {
 		this.updateBoosters();
-   
+
   }
 
   updateBoosters() {
@@ -57,10 +58,10 @@ export class BoosterPage {
     this.boosterData.getTimeline(this.queryText, this.segment).subscribe((data: any) => {
       this.shownBoosters = data.shownBoosters;
       this.boosters = data;
-      
-      
-      
-      
+
+
+
+
     });
   }
 
@@ -123,11 +124,20 @@ export class BoosterPage {
 
     goToBoosterDetail(booster: any) {
     this.navCtrl.push(BoosterdetailPage, { boosterId: booster.id });
-  }
+    }
+
+    PresentPopover(event: Event){
+      this.ev.publish('popover:launch');
+      }
+
+    closeApp(){
+      this.ev.publish('app:close');
+      }
+
 
     doRefresh(refresher: Refresher) {
 
-    
+
     this.boosterData.getTimeline(this.queryText, this.segment).subscribe((data: any) => {
       this.shownBoosters = data.shownBoosters;
       this.boosters = data;
@@ -146,13 +156,5 @@ export class BoosterPage {
     });
   }
 
-  PresentPopover(event: Event){
-  this.events.publish('popover:launch');
-  }
-
-  closeApp(){
-  this.events.publish('app:close');
-  
-  }
 
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, List } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, List, Events } from 'ionic-angular';
 import { EventsDataProvider } from '../../providers/events-data/events-data';
 import { EventdetailPage } from '../eventdetail/eventdetail';
 /**
@@ -17,8 +17,8 @@ import { EventdetailPage } from '../eventdetail/eventdetail';
 export class EventsPage {
   @ViewChild('eventList', { read: List }) scheduleList: List;
   events: any = [];
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public eventData: EventsDataProvider,) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public eventData: EventsDataProvider, public ev : Events) {
   }
 
   ionViewDidLoad() {
@@ -26,11 +26,20 @@ export class EventsPage {
     this.eventData.getEvents().subscribe((data: any []) => {
       this.events = data;
     });
-    
+
   }
 
  seeEvent(event) {
     this.navCtrl.push(EventdetailPage, {event});
-  } 
+  }
+
+  PresentPopover(event: Event){
+    this.ev.publish('popover:launch');
+    }
+
+  closeApp(){
+    this.ev.publish('app:close');
+    }
+
 
 }

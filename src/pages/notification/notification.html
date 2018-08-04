@@ -16,13 +16,13 @@
 </ion-header>
 
 
-<ion-content no-padding>
+<ion-content no-padding margin-top>
   <ion-list >
-    <ion-item *ngFor="let notification of notifications" (click)="viewNotification(notification)">        
-          <ion-icon item-start name = "md-megaphone"></ion-icon>        
-        <h2>{{notification.name}}</h2>  
-        <p><ion-icon name = "clock-outline"></ion-icon> {{notification.created_at | date: 'fullDate'}}</p>      
+    <ion-item *ngFor="let notification of notifications" (click)="viewNotification(notification)">
+          <ion-icon item-start name = "md-megaphone"></ion-icon>
+        <h2>{{notification.name}}</h2>
+        <p><ion-icon name = "clock-outline"></ion-icon> {{notification.created_at | date: 'fullDate'}}</p>
     </ion-item>
   </ion-list>
-  
+
 </ion-content>

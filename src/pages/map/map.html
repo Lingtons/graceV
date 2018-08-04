@@ -11,7 +11,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Way to Church</ion-title>
+    <ion-title>Direction to Church</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="PresentPopover($event)">
         <ion-icon ios="md-more" md="md-more"></ion-icon>
@@ -22,7 +22,17 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content no-padding class = "map text-center vertical-align-content">
+    <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+              <ion-col>
+                    <button ion-button  (click) = "openMap()">
+                        Get Direction
+                          </button>
 
-
+              </ion-col>
+              <ion-col></ion-col>
+        </ion-row>
+  </ion-grid>
 </ion-content>

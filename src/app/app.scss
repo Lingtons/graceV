@@ -29,29 +29,29 @@ $colors: (
   whatsapp:   #128c7e,
   instagram:  #fb3958,
   major:	  #66bb6a,
-  
+
 );
 
 ion-content{
-ion-icon::before {
+/* ion-icon::before {
 
     color: color($colors, whatsapp);
 }
-
+ */
 // selected tab color on android
 .tabs-md .tab-button[aria-selected="true"] {
     color: color($colors, whatsapp);
     padding: 0px;
 }
 
-// selected tab color on ios 
+// selected tab color on ios
 .tabs-ios .tab-button[aria-selected="true"] {
     color: color($colors, whatsapp);
     padding: 0px;
 
 }
 
-// selected tab color on windows 
+// selected tab color on windows
 .tabs-wp .tab-button[aria-selected="true"] {
     color: color($colors, whatsapp);
     border-bottom-color: color($colors, whatsapp);
@@ -60,50 +60,51 @@ ion-icon::before {
 
 .profile_cover {
     height: 130px;
+    width:100%;
 }
 
 
 side-menu-content {
-    
+
         $active-color: map-get($colors, primary);
-    
+
         // In this example, we have used the following name
         // for the selected option in the settings object:
         // selectedOptionClass: 'active-side-menu-option'
-    
+
         // Single option
         // ------------------
         ion-item.item.item-block.option {
             background-color: #fff;
             color: #222;
-    
+
             &.active-side-menu-option {
                 color: $active-color;
                 font-weight: 700;
             }
         }
-    
+
         // Header
         // ------------------
         ion-item.item.item-block.header {
             background-color: #eee;
             color: #222;
-    
+
             &.active-side-menu-option {
                 color: $active-color;
                 font-weight: 700;
             }
         }
-    
+
         // Sub option
         // ------------------
         ion-item.item.item-block.sub-option {
             background-color: #fff;
             color: #222;
-    
+
             &.active-side-menu-option {
                 color: $active-color;
-                font-weight: 700;            
+                font-weight: 700;
             }
         }
     }

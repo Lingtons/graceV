@@ -11,7 +11,27 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 @IonicPage()
 @Component({
   selector: 'page-viewlesson',
-  templateUrl: 'viewlesson.html',
+  template: `
+<ion-header>
+
+  <ion-navbar padding no-border-bottom>
+    <ion-title>{{lesson?.title}}</ion-title>
+    <ion-buttons end>
+	<button ion-button icon-only (click) = "closeModal()" ><ion-icon name = "close"></ion-icon> </button>
+	</ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding margin-top>
+	<ion-item-divider sticky>
+<label>{{lesson?.title}}</label>
+</ion-item-divider>
+
+<p padding [innerHTML]="lesson?.body"></p>
+</ion-content>
+`,
 })
 export class ViewlessonPage {
 lesson : any;
@@ -25,9 +45,9 @@ lesson : any;
   }
 
   closeModal(){
-  
+
   this.viewCtrl.dismiss();
-  
+
   }
 
 }

@@ -21,24 +21,19 @@
 </ion-header>
 
 
-<ion-content>
-  <ion-list #eventList >                          
-    <ion-card *ngFor="let event of events"  (click)="seeEvent(event)">
-          <img src="http://gracev.gwucorp.com/images/{{event.avatar}}" />
-          <ion-card-content >
-              <ion-card-title  >                              
-                  {{event.title}}                          
-              </ion-card-title>                      
-              <p>                        
-                  {{event.category.name}} &mdash;                          
-                  {{event.created_at | date: 'fullDate' }}
-                  <button ion-button clear icon-only small color="danger" icon-start>
-                    <ion-icon name='share-alt' ></ion-icon>                                                        
-                  </button>
-                </p>
-        </ion-card-content>                                                                                        
-    </ion-card>
-    
+<ion-content no-padding margin-top>
+  <ion-grid no-padding>
+      <ion-row>
+        <ion-col col-12 col-md-6 col-lg-6 col-xl-6 *ngFor="let event of events"  (click)="seeEvent(event)">
+          <ion-card>
+              <img src="http://gracev.gwucorp.com/images/{{event.avatar}}" />
+            <ion-card-header>{{ event.title }}</ion-card-header>
+            <ion-card-content>
+                {{event.created_at | date: 'fullDate' }}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  </ion-list>
 </ion-content>

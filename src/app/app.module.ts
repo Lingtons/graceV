@@ -29,12 +29,13 @@ import { UserdataProvider } from '../providers/userdata/userdata';
 import { PostdataProvider } from '../providers/postdata/postdata';
 import { UserpostdataProvider } from '../providers/userpostdata/userpostdata';
 import { FlashCardComponent } from '../components/flash-card/flash-card';
-import { Push } from '@ionic-native/push';
 import { SideMenuContentComponent } from '../components/side-menu-content/side-menu-content.component';
 import { EventsDataProvider } from '../providers/events-data/events-data';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { RestdataProvider } from '../providers/restdata/restdata';
 import { ViewresourcePage } from '../pages/viewresource/viewresource';
+import { Network } from '@ionic-native/network';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { ViewresourcePage } from '../pages/viewresource/viewresource';
         { component: BoosterPage, name: 'BoosterPage', segment: 'TeachingsPage' },
         { component: BoosterdetailPage, name: 'Boosterdetail', segment: 'Boosterdetail/:boosterId' },
         { component: EventsPage, name: 'EventsPage' },
-        
+
       ]
     }),
     CacheModule.forRoot()
@@ -97,16 +98,17 @@ import { ViewresourcePage } from '../pages/viewresource/viewresource';
     EventdetailPage,
     ViewnotificationPage,
     ViewresourcePage
-    
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AppMinimize,
-    Push,
     Firebase,
     InAppBrowser,
     LaunchNavigator,
+    Network,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BoosterdataProvider,
     UserdataProvider,

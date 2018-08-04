@@ -23,7 +23,7 @@ export class TeachingsPage {
   // with the variable #postsList, `read: List` tells it to return
   // the List and not a reference to the element
   @ViewChild('postsList', { read: List }) postsList: List;
-  
+
 
   queryText = '';
   posts : any[] = [];
@@ -31,15 +31,16 @@ export class TeachingsPage {
   segment = 'all';
 
   constructor(
-  	public navCtrl: NavController, 
-  	public navParams: NavParams, 
+  	public navCtrl: NavController,
+  	public navParams: NavParams,
   	public postData: PostdataProvider,
   	public alertCtrl: AlertController,
 	public app: App,
 	public toastCtrl: ToastController,
-	public user: UserpostdataProvider,
-  public events: Events,
-	
+  public user: UserpostdataProvider,
+  public ev : Events
+
+
     )
      { }
 
@@ -53,7 +54,7 @@ export class TeachingsPage {
 
     this.postData.getTimeline(this.queryText, this.segment).subscribe((data: any) => {
       this.shownPosts = data.shownPosts;
-      this.posts = data;      
+      this.posts = data;
     });
   }
 
@@ -118,9 +119,18 @@ export class TeachingsPage {
    this.navCtrl.push(PostdetailPage, { postId: post.id });
   }
 
+  PresentPopover(event: Event){
+    this.ev.publish('popover:launch');
+    }
+
+  closeApp(){
+    this.ev.publish('app:close');
+    }
+
+
     doRefresh(refresher: Refresher) {
 
-    
+
     this.postData.getTimeline(this.queryText, this.segment).subscribe((data: any) => {
       this.shownPosts = data.shownPosts;
       this.posts = data;
@@ -137,14 +147,5 @@ export class TeachingsPage {
         toast.present();
       }, 1000);
     });
-  }
-
-  PresentPopover(event: Event){
-  this.events.publish('popover:launch');
-  }
-
-  closeApp(){
-  this.events.publish('app:close');
-  
   }
 }

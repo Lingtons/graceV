@@ -23,7 +23,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 </ion-header>
 
 
-<ion-content>
+<ion-content padding margin-top>
 	<ion-item-divider sticky>
 <label>{{notification?.name}}</label>
 </ion-item-divider>
@@ -43,9 +43,9 @@ export class ViewnotificationPage {
   }
 
   closeModal(){
-  
+
     this.viewCtrl.dismiss();
-    
+
     }
 
 }

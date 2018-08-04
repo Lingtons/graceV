@@ -15,10 +15,10 @@ import { Observable } from 'rxjs/Observable';
 export class RestdataProvider {
 //  resources: Observable<any>;
   resourceKey = 'resource-group';
-  
+
   data: any;
     constructor(public http: Http, public cache: CacheService) { }
-  
+
     load(res_type: string): any {
       if (this.data) {
         return Observable.of(this.data);
@@ -27,12 +27,12 @@ export class RestdataProvider {
     let req = this.http.get(url);
     let delayType = 'all';
       let ttl = 60*60*24*2;
-      
+
     return this.cache.loadFromDelayedObservable(url, req, this.resourceKey, ttl, delayType).map(res => res.json());
-  
+
     }
     }
-  
+
   getNotifications() {
     return this.load("notifications").map((data: any) => {
       console.log(data.notifications);
@@ -45,14 +45,14 @@ export class RestdataProvider {
       console.log(data.videos);
       return data.videos;
     });
-  }  
+  }
 
   getAudios() {
     return this.load("audios").map((data: any) => {
       console.log(data.audios);
       return data.audios;
     });
-  }  
+  }
 
   getResources() {
     return this.load("resources").map((data: any) => {

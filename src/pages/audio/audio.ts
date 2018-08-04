@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
 import { RestdataProvider } from '../../providers/restdata/restdata';
 
@@ -16,14 +16,14 @@ import { RestdataProvider } from '../../providers/restdata/restdata';
   templateUrl: 'audio.html',
 })
 export class AudioPage {
-  url: string;  
+  url: string;
   audios: any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, private inAppBrowser: InAppBrowser, public restData: RestdataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private inAppBrowser: InAppBrowser, public restData: RestdataProvider, public ev : Events) {
   }
 
   ionViewDidLoad() {
     this.restData.getAudios().subscribe((data: any []) => {
-      this.audios = data;      
+      this.audios = data;
     });
 
   }
@@ -36,8 +36,17 @@ export class AudioPage {
     }
 // Opening a URL and returning an InAppBrowserObject
 const browser = this.inAppBrowser.create(url, '_self', options);
-  
+
 }
- 
+
+PresentPopover(event: Event){
+  this.ev.publish('popover:launch');
+  }
+
+closeApp(){
+  this.ev.publish('app:close');
+  }
+
+
 
 }

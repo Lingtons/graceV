@@ -38,24 +38,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content no-padding margin-top>
 	  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
    <ion-list #boostersList [hidden]="shownBoosters === 0">
-    <ion-item *ngFor="let booster of boosters" [hidden]="booster.hide" (click)="goToBoosterDetail(booster)">
-        <ion-avatar item-start>
-          <img src="assets/img/bulb2.jpg">
-        </ion-avatar>
+    <ion-item *ngFor="let booster of boosters" [attr.color]="booster.color | lowercase"  (click)="goToBoosterDetail(booster)">
         <h2>{{booster.title}}</h2>
         <p>Category : {{booster.color}}</p>
       </ion-item>
 
   </ion-list>
-  
   <ion-list-header [hidden]="shownBoosters > 0">
       No Boosters Found
   </ion-list-header>
+
 
 </ion-content>

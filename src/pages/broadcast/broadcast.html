@@ -16,12 +16,12 @@
 </ion-header>
 
 
-<ion-content no-padding>
+<ion-content no-padding margin-top>
     <ion-list >
-        <ion-item *ngFor="let resource of resources" (click)="viewResource(resource)">        
-              <ion-icon item-start name = "folder"></ion-icon>        
-            <h2>{{resource.title}}</h2>  
-            <p><ion-icon name = "clock-outline"></ion-icon> {{resource.created_at | date: 'fullDate'}}</p>      
+        <ion-item *ngFor="let resource of resources" (click)="viewResource(resource)">
+              <ion-icon item-start name = "folder"></ion-icon>
+            <h2>{{resource.title}}</h2>
+            <p><ion-icon name = "clock-outline"></ion-icon> {{resource.created_at | date: 'fullDate'}}</p>
         </ion-item>
-      </ion-list>    
+      </ion-list>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Events} from 'ionic-angular';
 import { RestdataProvider } from '../../providers/restdata/restdata';
 import { ViewnotificationPage } from '../viewnotification/viewnotification';
 
@@ -17,18 +17,27 @@ import { ViewnotificationPage } from '../viewnotification/viewnotification';
 })
 export class NotificationPage {
   notifications: any = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restData: RestdataProvider, public modalCtrl : ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restData: RestdataProvider, public modalCtrl : ModalController, public ev:Events) {
   }
 
-  ionViewDidLoad() {    
+  ionViewDidLoad() {
     this.restData.getNotifications().subscribe((data: any []) => {
-      this.notifications = data;      
+      this.notifications = data;
     });
-    
+
   }
 
   viewNotification(notification){
     let modal = this.modalCtrl.create(ViewnotificationPage, {notification});
-    modal.present();      
+    modal.present();
     }
+
+    PresentPopover(event: Event){
+      this.ev.publish('popover:launch');
+      }
+
+    closeApp(){
+      this.ev.publish('app:close');
+      }
+
 }
