@@ -9,6 +9,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { PopoverPage } from '../pages/popover/popover';
 import { BoosterPage } from '../pages/booster/booster';
 import { TeachingsPage } from '../pages/teachings/teachings';
+import {AboutPage} from '../pages/about/about';
+import {ContactPage} from '../pages/contact/contact';
 import { AudioPage } from '../pages/audio/audio';
 import { BroadcastPage } from '../pages/broadcast/broadcast';
 import { EventsPage } from '../pages/events/events';
@@ -79,6 +81,15 @@ export class MyApp {
       this.CloseApp();
     });
 
+    this.events.subscribe('app:contact', () => {
+      this.Contact();
+    });
+
+    this.events.subscribe('app:about', () => {
+      this.About();
+    });
+
+
   }
 
   initializeApp() {
@@ -105,7 +116,7 @@ export class MyApp {
 
       */
 
-
+/* 
             this.firebase.getToken()
               .then(token => console.log(`The token is ${token}`)) // save the token server-side and use it to push notifications to this device
               .catch(error => console.error('Error getting token', error));
@@ -124,7 +135,7 @@ export class MyApp {
                     } else if (!res.tap) {
                     this.nav.push(NotificationPage)
                     }
-            }); 
+            });  */
 
 this.statusBar.overlaysWebView(false);
         //this.statusBar.styleDefault();
@@ -270,6 +281,16 @@ this.statusBar.overlaysWebView(false);
 
   CloseApp() {
     this.platform.exitApp();
+  }
+
+  Contact() {
+    this.nav.setRoot(ContactPage);
+    //this.viewCtrl.dismiss();
+  }
+
+  About() {
+    this.nav.setRoot(AboutPage);
+    
   }
 
   private presentToast(text) {

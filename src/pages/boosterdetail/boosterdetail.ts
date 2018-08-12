@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, SecurityContext } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { BoosterdataProvider } from '../../providers/boosterdata/boosterdata';
 import { SocialSharing } from '@ionic-native/social-sharing';
-
+import { DomSanitizer } from '@angular/platform-browser';
 /**
  * Generated class for the BoosterdetailPage page.
  *
@@ -20,7 +20,7 @@ export class BoosterdetailPage {
   booster : any;
   sitelink: string = 'http://gracev.gwucorp.com/images/';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public boosterData: BoosterdataProvider, public ev : Events, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public boosterData: BoosterdataProvider, public ev : Events, private socialSharing: SocialSharing, private sanitizer:DomSanitizer) {
   }
 
 
@@ -82,8 +82,9 @@ export class BoosterdetailPage {
     }
 
 
+
     shareWhatsapp(){
-      this.socialSharing.shareViaWhatsApp(this.booster.verse, this.sitelink+'verse.jpg', null )
+      this.socialSharing.shareViaWhatsApp(this.sanitizer.sanitize(SecurityContext.HTML, this.booster.verse), this.sitelink+'verse.jpg', null )
       .then(()=> {
         console.log("success");
       }).catch(()=>{

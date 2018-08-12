@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { App, NavController, ViewController, Events } from 'ionic-angular';
-
+import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
 /**
  * Generated class for the PopoverPage page.
  *
@@ -11,9 +11,11 @@ import { App, NavController, ViewController, Events } from 'ionic-angular';
 @Component({
   template: `
     <ion-list>
-<!-- <button ion-item >Settings <ion-icon item-start name = "cog"></ion-icon></button>
-<button ion-item >Contact  <ion-icon item-start name = "call-outline"></ion-icon></button>
-<button ion-item >About  <ion-icon item-start name = "alert-outline"></ion-icon></button> -->
+
+<button ion-item (click)="about()">About  <ion-icon item-start name = "alert-outline"></ion-icon></button>
+<button ion-item (click)="contact()" >Contact  <ion-icon item-start name = "call-outline"></ion-icon></button>
+<button ion-item (click)="openInApp('http://gracevillecc.org')" >Website <ion-icon item-start name = "globe"></ion-icon></button>
+
 <button ion-item (click)="closeApp()">Exit  <ion-icon item-start name = "power"></ion-icon></button>
 
 
@@ -27,7 +29,8 @@ export class PopoverPage {
   	public viewCtrl: ViewController,
     public navCtrl: NavController,
     public app: App,
-    public ev: Events
+    public ev: Events,
+    private inAppBrowser: InAppBrowser
 
 ) {
   }
@@ -41,4 +44,24 @@ export class PopoverPage {
   closeApp(){
     this.ev.publish('app:close');
     }
+
+  openInApp(url: string) {
+      const options: InAppBrowserOptions = {
+        zoom: 'no',
+        location: 'yes',
+        mediaPlaybackRequiresUserAction: 'no'
+      }
+  // Opening a URL and returning an InAppBrowserObject
+  const browser = this.inAppBrowser.create(url, '_self', options);
+  }
+
+  contact() {  
+    this.ev.publish('app:contact');
+    this.viewCtrl.dismiss();
+  }
+
+  about() {    
+    this.ev.publish('app:about');
+    this.viewCtrl.dismiss();
+  }
 }

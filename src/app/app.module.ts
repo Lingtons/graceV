@@ -15,6 +15,8 @@ import { PostdetailPage } from '../pages/postdetail/postdetail';
 import { ViewlessonPage } from '../pages/viewlesson/viewlesson';
 import { ViewnotificationPage } from '../pages/viewnotification/viewnotification';
 import { PopoverPage } from '../pages/popover/popover';
+import {AboutPage} from '../pages/about/about';
+import {ContactPage} from '../pages/contact/contact';
 import { AudioPage } from '../pages/audio/audio';
 import { BroadcastPage } from '../pages/broadcast/broadcast';
 import { EventsPage } from '../pages/events/events';
@@ -57,7 +59,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     SideMenuContentComponent,
     EventdetailPage,
     ViewnotificationPage,
-    ViewresourcePage
+    ViewresourcePage,
+    ContactPage,
+    AboutPage
   ],
   imports: [
     HttpModule,
@@ -97,7 +101,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     FlashCardComponent,
     EventdetailPage,
     ViewnotificationPage,
-    ViewresourcePage
+    ViewresourcePage,
+    ContactPage,
+    AboutPage
 
   ],
   providers: [

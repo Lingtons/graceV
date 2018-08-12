@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { EventsDataProvider } from '../../providers/events-data/events-data';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { DomSanitizer } from '@angular/platform-browser';
 /**
  * Generated class for the EventdetailPage page.
  *
@@ -20,12 +21,15 @@ file:string = null;
 link:string = null;
 subject:string = null;
 sitelink: string = 'http://gracev.gwucorp.com/images/';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public eventData: EventsDataProvider, public ev : Events, private socialSharing: SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public eventData: EventsDataProvider, public ev : Events, private socialSharing: SocialSharing, private sanitizer: DomSanitizer) {
   }
 
   ionViewDidLoad() {
     this.event  = this.navParams.get('event');
+    //this.sanitizer.
   }
+
+
 
   PresentPopover(event: Event){
     this.ev.publish('popover:launch');

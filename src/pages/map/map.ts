@@ -32,7 +32,7 @@ export class MapPage {
       app: this.launchNavigator.APP.GOOGLE_MAP,
     };
 
-    this.launchNavigator.navigate('Graceville Christian Centre, Abuja', options)
+    this.launchNavigator.navigate('Plot 74, Wumba, Abuja', options)
       .then(
         success => console.log('Launched navigator'),
         error => console.log('Error launching navigator', error)
